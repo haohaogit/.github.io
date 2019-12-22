@@ -64,64 +64,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-在使用mybaties持久层框架在做批量数据操作时，系统报org" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/22/%E5%9C%A8%E4%BD%BF%E7%94%A8mybaties%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E5%9C%A8%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E6%97%B6%EF%BC%8C%E7%B3%BB%E7%BB%9F%E6%8A%A5org/" class="article-date">
-  <time datetime="2019-12-22T10:20:37.714Z" itemprop="datePublished">2019-12-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/22/%E5%9C%A8%E4%BD%BF%E7%94%A8mybaties%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E5%9C%A8%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E6%97%B6%EF%BC%8C%E7%B3%BB%E7%BB%9F%E6%8A%A5org/">在使用mybaties持久层框架在做批量数据操作时，系统报org</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    在使用mybaties持久层框架在做”批量数据”操作时，系统报”org.apache.ibatis.binding.BindingException”异常，这种情况出现的原因一般有以下几种情况：</p>
-<ul>
-<li><p>“foreach”中最重要的元素,也最容易出现问题的为”collection”，该元素必须指定，但根据不同的情况氛围分为三种情况：</p>
-<ul>
-<li>1、DAO层传参为单参数且参数为List的时，collection属性为”list”；</li>
-<li>2、DAO传单参数且参数类型为Array时，collection属性为”array”；</li>
-<li>3、DAO层传参为多参数时，用Map或实体对象封装；</li>
-</ul>
-</li>
-<li><p>本质上讲DAO层传单参数时，持久层框架底层也是自动把参数封装成Map。如传参单参数list时，封装成Map后，key值为”list”，value值为传入的List参数，此时”foreach”中的”collection”属性值则必须为key值，也即”list”;</p>
-</li>
-<li><p>另一种方法是使用@Param注解，实际上底层在把参数封装为Map时，指定@Param中的参数为key值，此时在mapper.xml文件中使用该参数时，参数名须与指定参数名一致。如”foreach”的”collection”属性值必须和注解@Param指定的参数名一致;</p>
-</li>
-</ul>
-<p>mybaties框架批量数据操作语句如下所示：</p>
-<p>操作数据层，也即DAO层：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;ItemPO&gt; selectByIds(@Param(&quot;ids&quot;) List&lt;Long&gt; ids);</span><br></pre></td></tr></table></figure>
-
-<p>对应的xml文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id&#x3D;&quot;selectByIds&quot; resultMap&#x3D;&quot;BaseResultMap&quot;&gt;</span><br><span class="line">  select</span><br><span class="line">  &lt;include refid&#x3D;&quot;Base_Column_List&quot; &#x2F;&gt;</span><br><span class="line">  from item</span><br><span class="line">  where id in</span><br><span class="line">  &lt;foreach collection&#x3D;&quot;ids&quot; index&#x3D;&quot;index&quot; item&#x3D;&quot;id&quot; open&#x3D;&quot;(&quot; separator&#x3D;&quot;,&quot; close&#x3D;&quot;)&quot;&gt;</span><br><span class="line">    #&#123;id&#125;</span><br><span class="line">  &lt;&#x2F;foreach&gt;</span><br><span class="line">  and is_del &#x3D; 0</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/22/%E5%9C%A8%E4%BD%BF%E7%94%A8mybaties%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E5%9C%A8%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E6%97%B6%EF%BC%8C%E7%B3%BB%E7%BB%9F%E6%8A%A5org/" data-id="ck4gv4iiu0001eh8kb5cm2suf" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-mybaties做批量数据操作，报org-apache-ibatis-binding-BindingException异常" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/22/mybaties%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%8A%A5org-apache-ibatis-binding-BindingException%E5%BC%82%E5%B8%B8/" class="article-date">
@@ -315,10 +257,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2019/12/22/%E5%9C%A8%E4%BD%BF%E7%94%A8mybaties%E6%8C%81%E4%B9%85%E5%B1%82%E6%A1%86%E6%9E%B6%E5%9C%A8%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E6%97%B6%EF%BC%8C%E7%B3%BB%E7%BB%9F%E6%8A%A5org/">在使用mybaties持久层框架在做批量数据操作时，系统报org</a>
-          </li>
         
           <li>
             <a href="/2019/12/22/mybaties%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%8A%A5org-apache-ibatis-binding-BindingException%E5%BC%82%E5%B8%B8/">mybaties做批量数据操作，报org.apache.ibatis.binding.BindingException异常</a>
