@@ -86,20 +86,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    最近在做一个项目的时候，由于业务方要求本地化部署，且数据库服务器不能直接通过IP访问，因此想到了配置“hosts”文件。hosts填坑之路也是从这里开始的…  </p>
-<p>​    最开始的时候同事推荐使用<a href="https://github.com/oldj/SwitchHosts" target="_blank" rel="noopener">SwitchHosts</a>，这是一款支持快捷切换host的工具，二话不说，读完操作文档后，直接下载下来先试着用起来，安装成功后打开时问题来了，找不到“/ect/hosts”文件路径，难道下错版本了？试了几个版本后感觉不是版本的问题…  </p>
-<p>​    难道是不能直接安装，如果用终端命令行安装呢？会不会变好。  在晚上查找安装SwitchHosts的命令行：”brew cask install switchhosts”等待了漫长的过程之后，还是找不到“/ect/hosts”文件路径…  </p>
-<p>​    我怎么这么难啊，看来只能用最简单粗暴的方式了，我直接改“hosts”文件不行吗，命令行“sudo vi /etc/hosts”输入密码后  </p>
+        <p> &#160; &#160; 最近在做一个项目的时候，由于业务方要求本地化部署，且数据库服务器不能直接通过IP访问，因此想到了配置“hosts”文件。hosts填坑之路也是从这里开始的…  </p>
+<p> &#160; &#160; 最开始的时候同事推荐使用<a href="https://github.com/oldj/SwitchHosts" target="_blank" rel="noopener">SwitchHosts</a>，这是一款支持快捷切换host的工具，二话不说，读完操作文档后，直接下载下来先试着用起来，安装成功后打开时问题来了，找不到“/ect/hosts”文件路径，难道下错版本了？试了几个版本后感觉不是版本的问题…  </p>
+<p> &#160; &#160; 难道是不能直接安装，如果用终端命令行安装呢？会不会变好。  在晚上查找安装SwitchHosts的命令行：”brew cask install switchhosts”等待了漫长的过程之后，还是找不到“/ect/hosts”文件路径…  </p>
+<p> &#160; &#160; 我怎么这么难啊，看来只能用最简单粗暴的方式了，我直接改“hosts”文件不行吗，命令行“sudo vi /etc/hosts”输入密码后  </p>
 <p><img src="https://wx1.sinaimg.cn/mw690/e19724f1ly1ga9adztln6j20w00lk41z.jpg" alt="e19724f1ly1ga9adztln6j20w00lk41z">  </p>
-<p>​    直接创建一个新闻件，但是通过”find”可以找到这个文件啊。。。。。。  </p>
-<p>​    到这里大佬们应该都知道怎么回事了，原来电脑里的“hosts”文件有后缀，所以造成了不仅switchHosts应用找不到文件，而且通过命令行打开文件时造成新建一个文件的现象。  </p>
-<p>​    <font color = red>案子总算破了，去掉“hosts”文件的后缀的那一刻，发现此时此刻太美妙了</font>&gt;</p>
-<p>![](mac 更改”hosts”文件遇到的一个坑/hosts_createNewFile.png)</p>
+<p> &#160; &#160; 直接创建一个新闻件，但是通过”find”可以找到这个文件啊。。。。。。  </p>
+<p> &#160; &#160; 到这里大佬们应该都知道怎么回事了，原来电脑里的“hosts”文件有后缀，所以造成了不仅switchHosts应用找不到文件，而且通过命令行打开文件时造成新建一个文件的现象。  </p>
+<p>​    <font color = red>案子总算破了，去掉“hosts”文件的后缀的那一刻，发现此时此刻太美妙了</font></p>
+<p>![](mac 更改”hosts”文件遇到的一个坑/hosts_createNewFile)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/25/mac-%E6%9B%B4%E6%94%B9%E2%80%9Chosts%E2%80%9D%E6%96%87%E4%BB%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/" data-id="ck4leaxs700012xjd3fq3gw3f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/25/mac-%E6%9B%B4%E6%94%B9%E2%80%9Chosts%E2%80%9D%E6%96%87%E4%BB%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/" data-id="ck4leh06n000041jdgqqi9uso" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -141,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/22/%E8%A7%81%E8%B7%AF%E4%B8%8D%E8%B5%B0/" data-id="ck4leaxsd00032xjdcbxlb5zz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/22/%E8%A7%81%E8%B7%AF%E4%B8%8D%E8%B5%B0/" data-id="ck4leh07w000641jd4l9v56xd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E5%8C%96/" rel="tag">文化</a></li></ul>
@@ -175,7 +175,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    在使用mybaties持久层框架在做”批量数据”操作时，系统报”org.apache.ibatis.binding.BindingException”异常，这种情况出现的原因一般有以下几种情况：</p>
+        <p> &#160; &#160; 在使用mybaties持久层框架在做”批量数据”操作时，系统报”org.apache.ibatis.binding.BindingException”异常，这种情况出现的原因一般有以下几种情况：</p>
 <ul>
 <li><p>xml文件中的”foreach”语句最重要的元素，也最容易出现问题的为”collection”，该元素必须指定，但根据不同的情况氛围分为三种情况：</p>
 <ul>
@@ -189,11 +189,11 @@
 <li><p>另一种方法是使用@Param注解，实际上底层在把参数封装为Map时，指定@Param中的参数为key值，此时在mapper.xml文件中使用该参数时，参数名须与指定参数名一致。如”foreach”的”collection”属性值必须和注解@Param指定的参数名一致;</p>
 </li>
 </ul>
-<p>mybaties框架批量数据操作语句如下所示：</p>
-<p>操作数据层，也即DAO层：</p>
+<p> &#160; &#160; mybaties框架批量数据操作语句如下所示：</p>
+<p> &#160; &#160; 操作数据层，也即DAO层：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;ItemPO&gt; selectByIds(@Param(&quot;ids&quot;) List&lt;Long&gt; ids);</span><br></pre></td></tr></table></figure>
 
-<p>对应的xml文件</p>
+<p> &#160; &#160; 对应的xml文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id&#x3D;&quot;selectByIds&quot; resultMap&#x3D;&quot;BaseResultMap&quot;&gt;</span><br><span class="line">  select</span><br><span class="line">  &lt;include refid&#x3D;&quot;Base_Column_List&quot; &#x2F;&gt;</span><br><span class="line">  from item</span><br><span class="line">  where id in</span><br><span class="line">  &lt;foreach collection&#x3D;&quot;ids&quot; index&#x3D;&quot;index&quot; item&#x3D;&quot;id&quot; open&#x3D;&quot;(&quot; separator&#x3D;&quot;,&quot; close&#x3D;&quot;)&quot;&gt;</span><br><span class="line">    #&#123;id&#125;</span><br><span class="line">  &lt;&#x2F;foreach&gt;</span><br><span class="line">  and is_del &#x3D; 0</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
 
 <p>​    </p>
@@ -201,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/22/mybaties%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%8A%A5org-apache-ibatis-binding-BindingException%E5%BC%82%E5%B8%B8/" data-id="ck4leaxrq00002xjd5nbl7p4r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/22/mybaties%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%8A%A5org-apache-ibatis-binding-BindingException%E5%BC%82%E5%B8%B8/" data-id="ck4leh07l000441jd3tce01xl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -252,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/20/hello-world/" data-id="ck4leaxse00042xjd8cq0bhzg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/20/hello-world/" data-id="ck4leh07k000341jdfsmq34dc" class="article-share-link">Share</a>
       
       
     </footer>
