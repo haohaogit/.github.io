@@ -86,8 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#####Zookeeper注册中心：</p>
-<ul>
+        <h5 id="Zookeeper注册中心："><a href="#Zookeeper注册中心：" class="headerlink" title="Zookeeper注册中心："></a>Zookeeper注册中心：</h5><ul>
 <li>zk主要用来提供注册服务和负载均衡，解决分布式一致性问题： </li>
 <li>流程说明：<ul>
 <li>服务提供者向zookeeper的注册中心注册服务，即向注册中心写入服务提供URL地址；</li>
@@ -101,8 +100,7 @@
 <li>具体怎么使用ZooKeeper作为dubbo服务的注册中心，网上有很多教程，大体如下：</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">    xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> xmlns:dubbo=<span class="string">"http://code.alibabatech.com/schema/dubbo"</span></span><br><span class="line">    xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd</span></span><br><span class="line"><span class="string">    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span>&gt;</span><br><span class="line">&lt;!-- 声明应用名称 --&gt;</span><br><span class="line">    &lt;dubbo:application name=<span class="string">"platform-service"</span>  organization=<span class="string">"test"</span>/&gt;</span><br><span class="line">&lt;!--注册中心为zk --&gt;</span><br><span class="line">    &lt;dubbo:registry protocol=<span class="string">"zookeeper"</span> address=<span class="string">"zk.test.com:2181"</span>  file=<span class="string">"./.dubbo-platform"</span>/&gt;</span><br><span class="line">&lt;!--把服务暴露在dubbo的<span class="number">21884</span>端口--&gt;</span><br><span class="line">    &lt;dubbo:protocol name=<span class="string">"dubbo"</span> port=<span class="string">"21884"</span> serialization=<span class="string">"hessian2"</span> /&gt;</span><br><span class="line">    &lt;dubbo:protocol name=<span class="string">"rest"</span> port=<span class="string">"8888"</span>/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
-<p>#####直接连接：</p>
-<ul>
+<h5 id="直接连接："><a href="#直接连接：" class="headerlink" title="直接连接："></a>直接连接：</h5><ul>
 <li><p><font color = blue>在开发和测试环境下，经常需要绕过注册中心，只测试指定服务提供者，这时候服务提供者和服务消费者可以直接沟通，即点对点直连</font>；</p>
 <ul>
 <li>点对点直连方式，是以dubbo服务接口为单位，忽略注册中心的服务提供者列表；</li>
@@ -110,16 +108,16 @@
 </ul>
 </li>
 <li><p>其中，dubbo-provider的配置为：</p>
-  <img src="https://wx4.sinaimg.cn/mw690/e19724f1ly1gaa3o6os6oj224q0sw7u1.jpg" width = 40% height = 40% />
+  <img src="https://wx4.sinaimg.cn/mw690/e19724f1ly1gaa3o6os6oj224q0sw7u1.jpg" width = 60% height = 60% />
 
 <ul>
 <li><p>还可以使用注解的方式：</p>
-<img src="https://wx3.sinaimg.cn/mw690/e19724f1ly1gaa3o9dyouj21y00t67wh.jpg" width = 40% height = 40% />
+<img src="https://wx3.sinaimg.cn/mw690/e19724f1ly1gaa3o9dyouj21y00t67wh.jpg" width = 60% height = 60% />
 </li>
 </ul>
 </li>
 <li><p>其中，dubbo-consumer的配置为：</p>
-  <img src="https://wx2.sinaimg.cn/mw690/e19724f1ly1gaa3o8fcv0j221g0r2b29.jpg" width = 40% height = 40% />
+  <img src="https://wx2.sinaimg.cn/mw690/e19724f1ly1gaa3o8fcv0j221g0r2b29.jpg" width = 60% height = 60% />
 
 </li>
 </ul>
@@ -127,7 +125,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E4%B9%8B%E3%80%8Adubbo%E7%9B%B4%E8%BF%9E%E5%92%8C%E9%80%9A%E8%BF%87ZK%E8%BF%9E%E6%8E%A5%E3%80%8B/" data-id="ck4mg7g9r0005qd8k1cfocv5q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/26/%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E4%B9%8B%E3%80%8Adubbo%E7%9B%B4%E8%BF%9E%E5%92%8C%E9%80%9A%E8%BF%87ZK%E8%BF%9E%E6%8E%A5%E3%80%8B/" data-id="ck4mg9lcv0003rt8kaahi2vel" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -174,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/25/mac-%E6%9B%B4%E6%94%B9%E2%80%9Chosts%E2%80%9D%E6%96%87%E4%BB%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/" data-id="ck4mg7g9a0001qd8k8ft03j64" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/25/mac-%E6%9B%B4%E6%94%B9%E2%80%9Chosts%E2%80%9D%E6%96%87%E4%BB%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/" data-id="ck4mg9lcg0000rt8kfxzk3rkk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -216,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/22/%E8%A7%81%E8%B7%AF%E4%B8%8D%E8%B5%B0/" data-id="ck4mg7g9t0007qd8k7t0r86zq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/22/%E8%A7%81%E8%B7%AF%E4%B8%8D%E8%B5%B0/" data-id="ck4mg9lcx0005rt8kfy0fa6z9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%96%87%E5%8C%96/" rel="tag">文化</a></li></ul>
@@ -276,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/22/mybaties%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%8A%A5org-apache-ibatis-binding-BindingException%E5%BC%82%E5%B8%B8/" data-id="ck4mg7g9p0004qd8kcmkx65l7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/22/mybaties%E5%81%9A%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%8A%A5org-apache-ibatis-binding-BindingException%E5%BC%82%E5%B8%B8/" data-id="ck4mg9lcw0004rt8kcynwc9dd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
@@ -327,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/20/hello-world/" data-id="ck4mg7g8y0000qd8k3wjwdfx8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/20/hello-world/" data-id="ck4mg9lcr0001rt8k0ixb9azj" class="article-share-link">Share</a>
       
       
     </footer>

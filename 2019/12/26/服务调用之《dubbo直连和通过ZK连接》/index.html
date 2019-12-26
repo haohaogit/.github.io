@@ -7,18 +7,18 @@
   
   <title>服务调用之《dubbo直连和通过ZK连接》 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#####Zookeeper注册中心：  zk主要用来提供注册服务和负载均衡，解决分布式一致性问题：  流程说明： 服务提供者向zookeeper的注册中心注册服务，即向注册中心写入服务提供URL地址； 服务消费者向注册中心订阅服务，然后注册中心会想消费者提供一份服务提供者URL地址列表； 服务消费者遍历服务提供者列表找到相应的服务； 消费者会在本地缓存提供者列表；这意味着如果注册中心突然宕机，短">
+  <meta name="description" content="Zookeeper注册中心： zk主要用来提供注册服务和负载均衡，解决分布式一致性问题：  流程说明： 服务提供者向zookeeper的注册中心注册服务，即向注册中心写入服务提供URL地址； 服务消费者向注册中心订阅服务，然后注册中心会想消费者提供一份服务提供者URL地址列表； 服务消费者遍历服务提供者列表找到相应的服务； 消费者会在本地缓存提供者列表；这意味着如果注册中心突然宕机，短时间内也不会">
 <meta property="og:type" content="article">
 <meta property="og:title" content="服务调用之《dubbo直连和通过ZK连接》">
 <meta property="og:url" content="http://yoursite.com/2019/12/26/%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E4%B9%8B%E3%80%8Adubbo%E7%9B%B4%E8%BF%9E%E5%92%8C%E9%80%9A%E8%BF%87ZK%E8%BF%9E%E6%8E%A5%E3%80%8B/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#####Zookeeper注册中心：  zk主要用来提供注册服务和负载均衡，解决分布式一致性问题：  流程说明： 服务提供者向zookeeper的注册中心注册服务，即向注册中心写入服务提供URL地址； 服务消费者向注册中心订阅服务，然后注册中心会想消费者提供一份服务提供者URL地址列表； 服务消费者遍历服务提供者列表找到相应的服务； 消费者会在本地缓存提供者列表；这意味着如果注册中心突然宕机，短">
+<meta property="og:description" content="Zookeeper注册中心： zk主要用来提供注册服务和负载均衡，解决分布式一致性问题：  流程说明： 服务提供者向zookeeper的注册中心注册服务，即向注册中心写入服务提供URL地址； 服务消费者向注册中心订阅服务，然后注册中心会想消费者提供一份服务提供者URL地址列表； 服务消费者遍历服务提供者列表找到相应的服务； 消费者会在本地缓存提供者列表；这意味着如果注册中心突然宕机，短时间内也不会">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wx4.sinaimg.cn/mw690/e19724f1ly1gaa3o6os6oj224q0sw7u1.jpg">
 <meta property="og:image" content="https://wx3.sinaimg.cn/mw690/e19724f1ly1gaa3o9dyouj21y00t67wh.jpg">
 <meta property="og:image" content="https://wx2.sinaimg.cn/mw690/e19724f1ly1gaa3o8fcv0j221g0r2b29.jpg">
 <meta property="article:published_time" content="2019-12-26T07:55:13.000Z">
-<meta property="article:modified_time" content="2019-12-26T08:11:12.537Z">
+<meta property="article:modified_time" content="2019-12-26T08:12:53.330Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -93,8 +93,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#####Zookeeper注册中心：</p>
-<ul>
+        <h5 id="Zookeeper注册中心："><a href="#Zookeeper注册中心：" class="headerlink" title="Zookeeper注册中心："></a>Zookeeper注册中心：</h5><ul>
 <li>zk主要用来提供注册服务和负载均衡，解决分布式一致性问题： </li>
 <li>流程说明：<ul>
 <li>服务提供者向zookeeper的注册中心注册服务，即向注册中心写入服务提供URL地址；</li>
@@ -108,8 +107,7 @@
 <li>具体怎么使用ZooKeeper作为dubbo服务的注册中心，网上有很多教程，大体如下：</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">"http://www.springframework.org/schema/beans"</span></span><br><span class="line">    xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> xmlns:dubbo=<span class="string">"http://code.alibabatech.com/schema/dubbo"</span></span><br><span class="line">    xsi:schemaLocation=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd</span></span><br><span class="line"><span class="string">    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span>&gt;</span><br><span class="line">&lt;!-- 声明应用名称 --&gt;</span><br><span class="line">    &lt;dubbo:application name=<span class="string">"platform-service"</span>  organization=<span class="string">"test"</span>/&gt;</span><br><span class="line">&lt;!--注册中心为zk --&gt;</span><br><span class="line">    &lt;dubbo:registry protocol=<span class="string">"zookeeper"</span> address=<span class="string">"zk.test.com:2181"</span>  file=<span class="string">"./.dubbo-platform"</span>/&gt;</span><br><span class="line">&lt;!--把服务暴露在dubbo的<span class="number">21884</span>端口--&gt;</span><br><span class="line">    &lt;dubbo:protocol name=<span class="string">"dubbo"</span> port=<span class="string">"21884"</span> serialization=<span class="string">"hessian2"</span> /&gt;</span><br><span class="line">    &lt;dubbo:protocol name=<span class="string">"rest"</span> port=<span class="string">"8888"</span>/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
-<p>#####直接连接：</p>
-<ul>
+<h5 id="直接连接："><a href="#直接连接：" class="headerlink" title="直接连接："></a>直接连接：</h5><ul>
 <li><p><font color = blue>在开发和测试环境下，经常需要绕过注册中心，只测试指定服务提供者，这时候服务提供者和服务消费者可以直接沟通，即点对点直连</font>；</p>
 <ul>
 <li>点对点直连方式，是以dubbo服务接口为单位，忽略注册中心的服务提供者列表；</li>
@@ -117,16 +115,16 @@
 </ul>
 </li>
 <li><p>其中，dubbo-provider的配置为：</p>
-  <img src="https://wx4.sinaimg.cn/mw690/e19724f1ly1gaa3o6os6oj224q0sw7u1.jpg" width = 40% height = 40% />
+  <img src="https://wx4.sinaimg.cn/mw690/e19724f1ly1gaa3o6os6oj224q0sw7u1.jpg" width = 60% height = 60% />
 
 <ul>
 <li><p>还可以使用注解的方式：</p>
-<img src="https://wx3.sinaimg.cn/mw690/e19724f1ly1gaa3o9dyouj21y00t67wh.jpg" width = 40% height = 40% />
+<img src="https://wx3.sinaimg.cn/mw690/e19724f1ly1gaa3o9dyouj21y00t67wh.jpg" width = 60% height = 60% />
 </li>
 </ul>
 </li>
 <li><p>其中，dubbo-consumer的配置为：</p>
-  <img src="https://wx2.sinaimg.cn/mw690/e19724f1ly1gaa3o8fcv0j221g0r2b29.jpg" width = 40% height = 40% />
+  <img src="https://wx2.sinaimg.cn/mw690/e19724f1ly1gaa3o8fcv0j221g0r2b29.jpg" width = 60% height = 60% />
 
 </li>
 </ul>
@@ -134,7 +132,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/26/%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E4%B9%8B%E3%80%8Adubbo%E7%9B%B4%E8%BF%9E%E5%92%8C%E9%80%9A%E8%BF%87ZK%E8%BF%9E%E6%8E%A5%E3%80%8B/" data-id="ck4mg7g9r0005qd8k1cfocv5q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/26/%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E4%B9%8B%E3%80%8Adubbo%E7%9B%B4%E8%BF%9E%E5%92%8C%E9%80%9A%E8%BF%87ZK%E8%BF%9E%E6%8E%A5%E3%80%8B/" data-id="ck4mg9lcv0003rt8kaahi2vel" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
